@@ -63,6 +63,6 @@ public class ListCategories extends JPanel {
     }
 
     public void setCategories(){
-        categories = dashBoard.moviePlatform.getCategories();
+        categories = dashBoard.getConnection().getCategories();
     }
 }

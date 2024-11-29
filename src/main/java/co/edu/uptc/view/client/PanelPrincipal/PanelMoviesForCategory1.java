@@ -83,7 +83,7 @@ public class PanelMoviesForCategory1 extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie1));
-                dashBoard.moviePlatform.getMovie(movies.get(movie1).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie1).getName());
             }
         });
         gbc.gridx = 1;
@@ -94,7 +94,7 @@ public class PanelMoviesForCategory1 extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie2));
-                dashBoard.moviePlatform.getMovie(movies.get(movie2).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie2).getName());
             }
         });
         gbc.gridx = 2;
@@ -105,7 +105,7 @@ public class PanelMoviesForCategory1 extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie3));
-                dashBoard.moviePlatform.getMovie(movies.get(movie3).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie3).getName());
             }
         });
         gbc.gridx = 3;
@@ -116,7 +116,7 @@ public class PanelMoviesForCategory1 extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie4));
-                dashBoard.moviePlatform.getMovie(movies.get(movie4).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie4).getName());
             }
         });
         gbc.gridx = 4;
@@ -204,28 +204,28 @@ public class PanelMoviesForCategory1 extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie1));
-                dashBoard.moviePlatform.getMovie(movies.get(movie1).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie1).getName());
             }
         });
         movie2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie2));
-                dashBoard.moviePlatform.getMovie(movies.get(movie2).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie2).getName());
             }
         });
         movie3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie3));
-                dashBoard.moviePlatform.getMovie(movies.get(movie3).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie3).getName());
             }
         });
         movie4Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(movie4));
-                dashBoard.moviePlatform.getMovie(movies.get(movie4).getName());
+                dashBoard.getConnection().getMovie(movies.get(movie4).getName());
             }
         });
     }
@@ -245,7 +245,7 @@ public class PanelMoviesForCategory1 extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dashBoard.panelMovie(movie);
-                    dashBoard.moviePlatform.getMovie(movie.getName());
+                    dashBoard.getConnection().getMovie(movie.getName());
                 }
             });
             gbc.gridx = count++;
@@ -262,7 +262,7 @@ public class PanelMoviesForCategory1 extends JPanel {
     }
 
     public void setMovies(){
-        movies = dashBoard.moviePlatform.getMoviesForCategory(category.getName());
+        movies = dashBoard.getConnection().getMoviesForCategory(category.getName());
     }
 
 }

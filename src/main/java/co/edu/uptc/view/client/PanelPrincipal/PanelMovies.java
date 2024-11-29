@@ -66,7 +66,7 @@ public class PanelMovies extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(count));
-                dashBoard.moviePlatform.getMovie(movies.get(count).getName());
+                dashBoard.getConnection().getMovie(movies.get(count).getName());
             }
         });
     }
@@ -93,7 +93,7 @@ public class PanelMovies extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(count));
-                dashBoard.moviePlatform.getMovie(movies.get(count).getName());
+                dashBoard.getConnection().getMovie(movies.get(count).getName());
             }
         });
     }
@@ -120,7 +120,7 @@ public class PanelMovies extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dashBoard.panelMovie(movies.get(count));
-                dashBoard.moviePlatform.getMovie(movies.get(count).getName());
+                dashBoard.getConnection().getMovie(movies.get(count).getName());
             }
         });
     }
@@ -134,7 +134,7 @@ public class PanelMovies extends JPanel {
     }
 
     public void setMovies() {
-        for (Movie movie1 : dashBoard.moviePlatform.getMovies()){
+        for (Movie movie1 : dashBoard.getConnection().getMovies()){
             if (movie1.getWallpaper() != null){
                 movies.add(movie1);
             }

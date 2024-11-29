@@ -31,16 +31,23 @@ public class DashBoardAdmin extends JFrame {
     public void initComponents(){
         setBounds(1, 1, 500, 720);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                getConnection().closeConnection();
+                System.exit(0);
+            }
+        });
 
         panelLogin = new PanelLoginAdministrator(this);
         this.getContentPane().add(panelLogin, BorderLayout.CENTER);
     }
 
     public void registerPanel(){
-        panelRegister.setVisible(true);
         panelLogin.setVisible(false);
         panelRegister = new PanelRegisterAdmin(this);
+        panelRegister.setVisible(true);
         this.getContentPane().add(panelRegister,BorderLayout.CENTER);
         revalidate();
         repaint();
@@ -49,8 +56,11 @@ public class DashBoardAdmin extends JFrame {
     public void panelPrincipal(){
         setBounds(1, 1, 1280, 720);
         setLocationRelativeTo(null);
-        principalPanel.setVisible(true);
-        panelLogin.setVisible(false);
+        if (panelRegister != null){
+            remove(panelRegister);
+        }if (panelLogin != null){
+            remove(panelLogin);
+        }
         principalPanel = new PrincipalPanel(this);
         this.getContentPane().add(principalPanel, BorderLayout.CENTER);
         revalidate();

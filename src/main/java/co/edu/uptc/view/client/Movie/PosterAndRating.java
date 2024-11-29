@@ -49,8 +49,8 @@ public class PosterAndRating extends JPanel {
             rating.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    dashBoard.moviePlatform.addRating(movie, count);
-                    dashBoard.panelMovie(movie);
+                    dashBoard.getConnection().addRating(movie, count);
+                    dashBoard.panelMovie(dashBoard.getConnection().getMovieForCommentAndRating(movie.getName()));
                 }
             });
             c.gridx = i;

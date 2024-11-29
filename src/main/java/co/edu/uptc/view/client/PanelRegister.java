@@ -199,7 +199,7 @@ public class PanelRegister extends JPanel {
                         emailTxt.getText(), passwordTxt.getText(), dobTxt.getDate(),
                         Integer.parseInt(idCardTxt.getText()));
                 user.setUserType(EUserType.client);
-                dashBoard.moviePlatform.addUser(user);
+                dashBoard.getConnection().registerUser(user);
                 dashBoard.setUser(user);
                 dashBoard.principalPanel();
             }

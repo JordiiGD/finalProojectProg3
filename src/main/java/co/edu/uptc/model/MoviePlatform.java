@@ -73,7 +73,7 @@ public class MoviePlatform {
         BinaryTree<Movie> moviesTemp = new BinaryTree<>(new MovieComparator());
         ArrayList<Movie> moviesToAdd = (ArrayList<Movie>) movies.inOrder();
         for (Movie m : moviesToAdd) {
-            if (m.equals(movie)) {
+            if (m.getName().equals(movie.getName())) {
                 m.addComment(new Comment(author, comment, LocalDateTime.now()));
             }
             moviesTemp.add(m);
@@ -137,6 +137,17 @@ public class MoviePlatform {
         for (Movie m : movieArrayList) {
             if (m.getName().equals(title)) {
                 m.setNumberOfVisited(m.getNumberOfVisited() + 1);
+                movies = setMovies(movieArrayList);
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Movie getMovieForCommentAndRating(String title) {
+        ArrayList<Movie> movieArrayList = (ArrayList<Movie>) movies.inOrder();
+        for (Movie m : movieArrayList) {
+            if (m.getName().equals(title)) {
                 movies = setMovies(movieArrayList);
                 return m;
             }

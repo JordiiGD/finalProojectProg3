@@ -3,6 +3,9 @@ package co.edu.uptc.model;
 import co.edu.uptc.structures.BinaryTree;
 import co.edu.uptc.structures.MovieComparator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Category {
 
     private String name;
@@ -27,5 +30,16 @@ public class Category {
 
     public void setMovies(BinaryTree<Movie> movies) {
         this.movies = movies;
+    }
+
+    public List<Movie> getMoviesAsList() {
+        return new ArrayList<>(movies.inOrder());
+    }
+
+    public void setMoviesFromList(List<Movie> moviesList) {
+        movies = new BinaryTree<>(new MovieComparator());
+        for (Movie movie : moviesList) {
+            movies.add(movie);
+        }
     }
 }

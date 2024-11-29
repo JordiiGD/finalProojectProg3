@@ -90,9 +90,9 @@ public class Comments extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dashBoard.moviePlatform.addComment(textArea.getText(),
-                        movie, dashBoard.getUser());
-                dashBoard.panelMovie(movie);
+                dashBoard.getConnection().addComment(textArea.getText(), movie,
+                        dashBoard.getUser());
+                dashBoard.panelMovie(dashBoard.getConnection().getMovieForCommentAndRating(movie.getName()));
             }
         });
     }

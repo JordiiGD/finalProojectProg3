@@ -133,7 +133,7 @@ public class PanelLogin extends JPanel {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (dashBoard.moviePlatform.loginClient(usernameTxt.getText(), passwordTxt.getText())){
+                if (dashBoard.getConnection().login(usernameTxt.getText(), passwordTxt.getText())){
                     setUser();
                     dashBoard.principalPanel();
                 }else {
@@ -185,7 +185,7 @@ public class PanelLogin extends JPanel {
     }
 
     public void setUser(){
-        dashBoard.setUser(dashBoard.moviePlatform.getUser(usernameTxt.getText(),
+        dashBoard.setUser(dashBoard.getConnection().getUser(usernameTxt.getText(),
                 passwordTxt.getText()));
     }
 }

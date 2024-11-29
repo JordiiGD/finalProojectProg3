@@ -18,7 +18,7 @@ public class Server {
     public Server(int port) throws IOException {
         moviePlatform = new MoviePlatform();
         this.port = port;
-        serverSocket = new ServerSocket(port);
+        serverSocket = new ServerSocket(this.port);
         loadData();
     }
 
@@ -34,12 +34,12 @@ public class Server {
         moviePlatform = new MoviePlatform();
 
         LocalDate dob = LocalDate.of(1998, 9, 6);
-        User userAd = new User("Jorge", "Gonzalez", "jagd334@gmail.com", "12345678", dob, 1054095677);
+        User userAd = new User("Jorge", "Gonzalez", "jagd", "123", dob, 1054095677);
         userAd.setUserType(EUserType.administrator);
         moviePlatform.addUser(userAd);
 
         LocalDate dob2 = LocalDate.of(2000, 9, 6);
-        User userClie = new User("Pepito", "Perez", "pepito3@gmail.com", "12345678", dob, 148561258);
+        User userClie = new User("Pepito", "Perez", "pepito3", "123", dob, 148561258);
         userClie.setUserType(EUserType.client);
         moviePlatform.addUser(userClie);
 

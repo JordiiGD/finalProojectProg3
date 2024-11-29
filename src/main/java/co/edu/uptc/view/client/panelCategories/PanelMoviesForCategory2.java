@@ -40,7 +40,7 @@ public class PanelMoviesForCategory2 extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dashBoard.panelMovie(movie);
-                    dashBoard.moviePlatform.getMovie(movie.getName());
+                    dashBoard.getConnection().getMovie(movie.getName());
                 }
             });
             c.gridx = x;
@@ -67,6 +67,6 @@ public class PanelMoviesForCategory2 extends JPanel {
     }
 
     public void setMovies(){
-        movies = dashBoard.moviePlatform.getMoviesForCategory(category);
+        movies = dashBoard.getConnection().getMoviesForCategory(category);
     }
 }

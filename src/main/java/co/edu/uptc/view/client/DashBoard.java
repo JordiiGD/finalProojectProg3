@@ -18,23 +18,30 @@ public class DashBoard extends JFrame {
 
     private PanelLogin panelLogin;
     private PanelRegister panelRegister;
-    public MoviePlatform moviePlatform;
     private PrincipalPanelClient principalPanel;
     private PanelCategories panelCategories;
     private PanelSearchWithHeader panelSearchWithHeader;
     private PanelMovieWithHeader panelMovieWithHeader;
     private User user;
+    private ClientConnection connection;
 
-    public DashBoard() {
+    public DashBoard(String host, int port) {
         setLayout(new BorderLayout());
-        loadData();
         initComponents();
+        connection = new ClientConnection(host, port);
     }
 
     public void initComponents() {
         setBounds(1, 1, 1920, 1080);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                getConnection().closeConnection();
+                System.exit(0);
+            }
+        });
 
         panelLogin = new PanelLogin(this);
         this.getContentPane().add(panelLogin, BorderLayout.CENTER);
@@ -55,7 +62,6 @@ public class DashBoard extends JFrame {
             remove(panelLogin);
         }if (panelSearchWithHeader!=null){
             remove(panelSearchWithHeader);
-            panelSearchWithHeader.getMoviePanel().stopSearch();
         }
         if (principalPanel != null){
             remove(principalPanel);
@@ -77,7 +83,6 @@ public class DashBoard extends JFrame {
             remove(panelLogin);
         }if (panelSearchWithHeader!=null){
             remove(panelSearchWithHeader);
-            panelSearchWithHeader.getMoviePanel().stopSearch();
         }if (panelMovieWithHeader!=null){
             remove(panelMovieWithHeader);
         }
@@ -100,7 +105,6 @@ public class DashBoard extends JFrame {
             remove(principalPanel);
         }if (panelSearchWithHeader!=null){
             remove(panelSearchWithHeader);
-            panelSearchWithHeader.getMoviePanel().stopSearch();
         }if (panelMovieWithHeader!=null){
             remove(panelMovieWithHeader);
         }
@@ -125,7 +129,6 @@ public class DashBoard extends JFrame {
             remove(principalPanel);
         }if (panelSearchWithHeader!=null){
             remove(panelSearchWithHeader);
-            panelSearchWithHeader.getMoviePanel().stopSearch();
         }if (panelMovieWithHeader!=null){
             remove(panelMovieWithHeader);
         }
@@ -147,7 +150,6 @@ public class DashBoard extends JFrame {
             remove(principalPanel);
         }if (panelSearchWithHeader!=null){
             remove(panelSearchWithHeader);
-            panelSearchWithHeader.getMoviePanel().stopSearch();
         }if (panelMovieWithHeader!=null){
             remove(panelMovieWithHeader);
         }
@@ -177,6 +179,10 @@ public class DashBoard extends JFrame {
         repaint();
     }
 
+    public ClientConnection getConnection() {
+        return connection;
+    }
+
     public void run(){
         setVisible(true);
     }
@@ -193,91 +199,8 @@ public class DashBoard extends JFrame {
         panelCategories.setPanel(category);
     }
 
-    public void loadData(){
-        moviePlatform = new MoviePlatform();
-
-        LocalDate dob = LocalDate.of(1998, 9,6);
-        User userAd = new User("Jorge", "Gonzalez", "jagd334@gmail.com", "12345678", dob, 1054095677);
-        userAd.setUserType(EUserType.administrator);
-        moviePlatform.addUser(userAd);
-
-        LocalDate dob2 = LocalDate.of(2000, 9,6);
-        User userClie = new User("Pepito", "Perez", "pepito3", "123", dob, 148561258);
-        user = userClie;
-        userClie.setUserType(EUserType.client);
-        moviePlatform.addUser(userClie);
-
-        LocalDate movieDate1 = LocalDate.of(2000, 9,6);
-        Movie movie = new Movie(movieDate1, "", "Interestelar");
-        movie.setPoster("src/data/posters/Interestelar.jpg");
-        movie.setWallpaper("src/data/wallpapers/InterstellarWallpaper.jpg");
-        movie.setNumberOfVisited(2);
-        BinaryTree temp = new BinaryTree<>(String::compareTo);
-        temp.add("Ficcion");
-        temp.add("Suspenso");
-        temp.add("Espacio");
-        temp.add("Prueba");
-        movie.setCategory(temp);
-        moviePlatform.addMovie(movie);
-
-        Movie movie2 = new Movie(movieDate1, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", "La Sirenita");
-        movie2.setPoster("src/data/posters/laSirenita.jpg");
-        movie2.setNumberOfVisited(4);
-        BinaryTree temp2 = new BinaryTree<>(String::compareTo);
-        temp2.add("Ficcion");
-        temp2.add("Romance");
-        temp2.add("Encanto");
-        temp2.add("Prueba");
-        movie2.setCategory(temp2);
-        moviePlatform.addMovie(movie2);
-
-        Movie movie3 = new Movie(movieDate1, "", "Mario Bros");
-        movie3.setPoster("src/data/posters/marioBros.jpg");
-        movie3.setNumberOfVisited(20);
-        BinaryTree temp3 = new BinaryTree<>(String::compareTo);
-        temp3.add("Ficcion");
-        temp3.add("Hermanos");
-        temp3.add("Animacion");
-        temp3.add("Prueba");
-        movie3.setCategory(temp3);
-        moviePlatform.addMovie(movie3);
-
-        Movie movie4 = new Movie(movieDate1, "", "Mulan");
-        movie4.setPoster("src/data/posters/mulan.jpg");
-        movie4.setNumberOfVisited(2);
-        BinaryTree temp4 = new BinaryTree<>(String::compareTo);
-        temp4.add("Accion");
-        temp4.add("Guerra");
-        temp4.add("China");
-        temp4.add("Prueba");
-        movie4.setCategory(temp4);
-        moviePlatform.addMovie(movie4);
-
-        Movie movie5 = new Movie(movieDate1, "", "Rapidos y furiosos");
-        movie5.setPoster("src/data/posters/rapidosyfuriosos.jpg");
-        movie5.setNumberOfVisited(7);
-        BinaryTree temp5 = new BinaryTree<>(String::compareTo);
-        temp5.add("Ficcion");
-        temp5.add("Accion");
-        temp5.add("Carreras");
-        temp5.add("Prueba");
-        movie5.setCategory(temp5);
-        moviePlatform.addMovie(movie5);
-
-        Movie movie6 = new Movie(movieDate1, "", "Spiderman: Multiverso");
-        movie6.setPoster("src/data/posters/SpiderManMultiverso.jpg");
-        movie6.setWallpaper("src/data/wallpapers/SpiderManMultiverse.jpeg");
-        BinaryTree temp6 = new BinaryTree<>(String::compareTo);
-        temp6.add("Animacion");
-        temp6.add("Accion");
-        temp6.add("Super-Heroe");
-        temp6.add("Prueba");
-        movie6.setCategory(temp6);
-        moviePlatform.addMovie(movie6);
-    }
-
     public static void main(String[] args) {
-        DashBoard dashBoard = new DashBoard();
+        DashBoard dashBoard = new DashBoard("localhost", 5000);
         dashBoard.run();
     }
 

@@ -6,6 +6,8 @@ import co.edu.uptc.structures.Queue;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Movie {
 
@@ -27,6 +29,15 @@ public class Movie {
         comments = new BinaryTree<>(new CommentComparator());
         category = new BinaryTree<>(String::compareToIgnoreCase);
         ratings = new BinaryTree<>(Integer::compareTo);
+    }
+
+    public Movie(){
+        name = "";
+        description = "";
+        poster = "";
+        wallpaper = "";
+        releaseDate = LocalDate.now();
+        comments = new BinaryTree<>(new CommentComparator());
     }
 
     public void addComment(Comment comment) {
@@ -117,5 +128,38 @@ public class Movie {
 
     public void setWallpaper(String wallpaper) {
         this.wallpaper = wallpaper;
+    }
+
+    public List<Comment> getCommentsAsList() {
+        return new ArrayList<>(comments.inOrder());
+    }
+
+    public List<String> getCategoryAsList() {
+        return new ArrayList<>(category.inOrder());
+    }
+
+    public List<Integer> getRatingsAsList() {
+        return new ArrayList<>(ratings.inOrder());
+    }
+
+    public void setCommentsFromList(List<Comment> commentsList) {
+        comments = new BinaryTree<>(new CommentComparator());
+        for (Comment comment : commentsList) {
+            comments.add(comment);
+        }
+    }
+
+    public void setCategoryFromList(List<String> categoryList) {
+        category = new BinaryTree<>(String::compareTo);
+        for (String category1 : categoryList) {
+            category.add(category1);
+        }
+    }
+
+    public void setRatingsFromList(List<Integer> ratingsList) {
+        ratings = new BinaryTree<>(Integer::compareTo);
+        for (Integer rating : ratingsList) {
+            ratings.add(rating);
+        }
     }
 }

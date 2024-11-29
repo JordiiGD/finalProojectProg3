@@ -63,7 +63,7 @@ public class MoviesMostVisitedPanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dashBoard.panelMovie(movie);
-                    dashBoard.moviePlatform.getMovie(movie.getName());
+                    dashBoard.getConnection().getMovie(movie.getName());
                 }
             });
             gbc.anchor = GridBagConstraints.CENTER;
@@ -73,8 +73,8 @@ public class MoviesMostVisitedPanel extends JPanel {
     }
 
     public void setMovies(){
-        if (!dashBoard.moviePlatform.getMostVisitedMovies().isEmpty()){
-            movies = dashBoard.moviePlatform.getMostVisitedMovies();
+        if (!dashBoard.getConnection().getMostVisitedMovies().isEmpty()){
+            movies = dashBoard.getConnection().getMostVisitedMovies();
         }else {
             movies = new ArrayList<>();
         }

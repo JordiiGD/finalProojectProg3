@@ -56,7 +56,7 @@ public class PaneRecentlyAddedMovie extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         dashBoard.panelMovie(movie);
-                        dashBoard.moviePlatform.getMovie(movie.getName());
+                        dashBoard.getConnection().getMovie(movie.getName());
                     }
                 });
                 gbc.gridx = count++;
@@ -66,6 +66,6 @@ public class PaneRecentlyAddedMovie extends JPanel {
     }
 
     public void setMovies(){
-        movies = dashBoard.moviePlatform.getRecentlyAddedMovies();
+        movies = dashBoard.getConnection().getMoviesRecentlyAdded();
     }
 }
